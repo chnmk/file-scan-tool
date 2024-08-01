@@ -1,14 +1,26 @@
 package cli
 
 import (
+	"bufio"
 	"fmt"
+	"io"
+	"strings"
 )
 
-func ReadFileFormat() string {
-	fileFormat := ".txt"
-
+func InputFileFormat(stdin io.Reader) (string, error) {
 	fmt.Println("Enter file format (default: '.txt'):")
-	fmt.Scan(&fileFormat)
+	reader := bufio.NewReader(stdin)
 
-	return fileFormat
+	fileFormat, err := reader.ReadString('\n')
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+
+	fileFormat = strings.TrimSpace(fileFormat)
+	if fileFormat == "" {
+		fileFormat = ".txt"
+	}
+
+	return fileFormat, nil
 }
