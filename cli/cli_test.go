@@ -2,6 +2,7 @@ package cli
 
 import (
 	"bytes"
+	"fmt"
 	"testing"
 )
 
@@ -14,7 +15,8 @@ func TestEmptyInput(t *testing.T) {
 		t.Error(err)
 	}
 
-	if fileFormat != ".txt" {
-		t.Error("should be '.txt', got", fileFormat)
+	if fileFormat != defaultInput {
+		errorString := fmt.Sprintf("should be '%s' (default), got", defaultInput)
+		t.Error(errorString, fileFormat)
 	}
 }
