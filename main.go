@@ -15,5 +15,9 @@ func main() {
 		return
 	}
 
-	scanner.ScanRecursive(fileFormat)
+	fmt.Println("Scanning for files:", fileFormat)
+	// fileList := make(map[string]string)
+	var fileList [][2]string
+	result := scanner.ScanFiles(fileFormat, fileList)
+	fmt.Println(result)
 }
