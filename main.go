@@ -15,9 +15,12 @@ func main() {
 		return
 	}
 
-	fmt.Println("Scanning for files:", fileFormat)
-	// fileList := make(map[string]string)
 	var fileList [][2]string
+
+	fmt.Println("Scanning for files:", fileFormat)
 	result := scanner.ScanFiles(fileFormat, fileList)
-	fmt.Println(result)
+
+	for _, r := range result {
+		fmt.Printf("File: %s, Parent: \\%s\n", r[0], r[1])
+	}
 }
