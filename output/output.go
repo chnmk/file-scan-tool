@@ -13,13 +13,7 @@ type OutputHandler interface {
 func SelectHandler(outputMode string, params []string) OutputHandler {
 	if outputMode == "print" {
 		var handler output.Print
-
-		if params[0] == "printParent" {
-			handler.PrintParent = true
-		} else {
-			handler.PrintParent = false
-		}
-
+		handler.HandleParams(params)
 		return handler
 	}
 
