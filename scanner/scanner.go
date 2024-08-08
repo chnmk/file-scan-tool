@@ -7,7 +7,7 @@ import (
 	"strings"
 )
 
-func ScanFiles(fileFormat string) [][2]string {
+func ScanFiles(fileFormats []string) [][2]string {
 	var fileList [][2]string
 
 	err := filepath.WalkDir(".", func(path string, d fs.DirEntry, err error) error {
@@ -15,11 +15,18 @@ func ScanFiles(fileFormat string) [][2]string {
 			return err
 		}
 
-		if filepath.Ext(d.Name()) == ".go" {
+		containsFormat := false
+		for _, s := range fileFormats {
+			if filepath.Ext(d.Name()) == s {
+				containsFormat = true
+			}
+		}
+
+		if containsFormat {
 			var parent string
 			pathSlice := strings.Split(path, "\\")
 			if len(pathSlice) > 1 {
-				parent = pathSlice[len(pathSlice)-2] // -1 for slice index, -1 for prelast element
+				parent = pathSlice[len(pathSlice)-2] // -1 to adjust for slice index, -1 for second to last element
 			}
 
 			var fileWithParent [2]string

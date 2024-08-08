@@ -9,7 +9,7 @@ import (
 
 const defaultInput = "mp3, flac, ogg"
 
-func InputFileFormat(stdin io.Reader) (string, error) {
+func InputFileFormat(stdin io.Reader) ([]string, error) {
 	fmt.Println("Enter file formats separated by commas")
 	fmt.Println("Or use '*' to scan all files")
 	fmt.Printf("Default: %s\n", defaultInput)
@@ -19,7 +19,7 @@ func InputFileFormat(stdin io.Reader) (string, error) {
 	fileFormat, err := reader.ReadString('\n')
 	if err != nil {
 		fmt.Println(err)
-		return "", err
+		return []string{}, err
 	}
 
 	// Decompose this file into "read" and "trim"
@@ -45,5 +45,5 @@ func InputFileFormat(stdin io.Reader) (string, error) {
 	// Check if slice is empty
 	// ...
 
-	return fileFormat, nil
+	return []string{fileFormat}, nil
 }

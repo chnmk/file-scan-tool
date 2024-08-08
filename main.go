@@ -10,7 +10,7 @@ import (
 )
 
 func main() {
-	fileFormat, err := cli.InputFileFormat(os.Stdin)
+	fileFormats, err := cli.InputFileFormat(os.Stdin)
 	if err != nil {
 		fmt.Println(err)
 		return
@@ -20,8 +20,8 @@ func main() {
 	params := []string{"printParent"} // temp
 	outputHandler := output.SelectHandler(outputMode, params)
 
-	fmt.Println("Scanning for files:", fileFormat)
-	result := scanner.ScanFiles(fileFormat)
+	fmt.Println("Scanning for files:", fileFormats)
+	result := scanner.ScanFiles(fileFormats)
 
 	fmt.Println("Processing result...")
 	outputHandler.HandleOutput(result)
