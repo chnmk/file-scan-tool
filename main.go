@@ -16,8 +16,11 @@ func main() {
 		return
 	}
 
+	outputMode := "print"
+
 	fmt.Println("Scanning for files:", fileFormat)
 	result := scanner.ScanFiles(fileFormat)
 
-	output.HandleResult(result)
+	fmt.Println("Processing result...")
+	output.SelectHandler(outputMode, result).HandleOutput()
 }
