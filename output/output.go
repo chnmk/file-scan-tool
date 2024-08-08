@@ -7,13 +7,19 @@ import (
 )
 
 type OutputHandler interface {
-	HandleOutput()
+	HandleOutput([][2]string)
 }
 
-func SelectHandler(outputMode string, result [][2]string) OutputHandler {
+func SelectHandler(outputMode string, params []string) OutputHandler {
 	if outputMode == "print" {
-		handler := new(output.Print)
-		handler.Result = result
+		var handler output.Print
+
+		if params[0] == "printParent" {
+			handler.PrintParent = true
+		} else {
+			handler.PrintParent = false
+		}
+
 		return handler
 	}
 
