@@ -7,7 +7,9 @@ import (
 	"strings"
 )
 
-func ScanFiles(fileFormat string, fileList [][2]string) [][2]string {
+func ScanFiles(fileFormat string) [][2]string {
+	var fileList [][2]string
+
 	err := filepath.WalkDir(".", func(path string, d fs.DirEntry, err error) error {
 		if err != nil {
 			return err

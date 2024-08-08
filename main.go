@@ -5,6 +5,7 @@ import (
 	"os"
 
 	"github.com/chnmk/file-scan-tool/cli"
+	"github.com/chnmk/file-scan-tool/output"
 	"github.com/chnmk/file-scan-tool/scanner"
 )
 
@@ -15,12 +16,8 @@ func main() {
 		return
 	}
 
-	var fileList [][2]string
-
 	fmt.Println("Scanning for files:", fileFormat)
-	result := scanner.ScanFiles(fileFormat, fileList)
+	result := scanner.ScanFiles(fileFormat)
 
-	for _, r := range result {
-		fmt.Printf("File: %s, Parent: \\%s\n", r[0], r[1])
-	}
+	output.HandleResult(result)
 }
