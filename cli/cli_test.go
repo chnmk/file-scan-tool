@@ -4,6 +4,8 @@ import (
 	"bytes"
 	"fmt"
 	"testing"
+
+	"github.com/chnmk/file-scan-tool/config"
 )
 
 func TestEmptyInput(t *testing.T) {
@@ -15,8 +17,8 @@ func TestEmptyInput(t *testing.T) {
 		t.Error(err)
 	}
 
-	if fileFormats[0] != defaultInput {
-		errorString := fmt.Sprintf("should be '%s' (default), got", defaultInput)
+	if fileFormats[0] != config.DefaultInput {
+		errorString := fmt.Sprintf("should be '%s' (default), got", config.DefaultInput)
 		t.Error(errorString, fileFormats)
 	}
 }

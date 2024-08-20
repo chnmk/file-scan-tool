@@ -17,7 +17,7 @@ func ScanFiles(fileFormats []string) [][2]string {
 
 		containsFormat := false
 		for _, s := range fileFormats {
-			if filepath.Ext(d.Name()) == s {
+			if filepath.Ext(d.Name()) == "."+s {
 				containsFormat = true
 			}
 		}
