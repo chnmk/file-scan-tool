@@ -16,7 +16,12 @@ func main() {
 		return
 	}
 
-	outputMode := "print"             // temp
+	outputMode, err := cli.InputOutputMode(os.Stdin)
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
 	params := []string{"printParent"} // temp
 	outputHandler := output.SelectHandler(outputMode, params)
 

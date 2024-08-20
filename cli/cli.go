@@ -56,3 +56,26 @@ func trimFileFormat(fileFormat string) []string {
 
 	return formatSliceNoEmpty
 }
+
+func InputOutputMode(stdin io.Reader) (string, error) {
+	fmt.Printf("Enter output format (default: %s)\n", config.DefaultOutputMode)
+	fmt.Println("print: prints output in the console")
+	fmt.Printf("text: saves output in a text file (%s)\n", config.DefaultOutputFile)
+	reader := bufio.NewReader(stdin)
+
+	// Read data
+	outputFormat, err := reader.ReadString('\n')
+	if err != nil {
+		fmt.Println(err)
+		return "", err
+	}
+
+	outputFormat = strings.TrimSpace(outputFormat)
+
+	if outputFormat != "print" && outputFormat != "text" {
+		fmt.Println("Input is invalid, using default instead...")
+		outputFormat = config.DefaultOutputMode
+	}
+
+	return outputFormat, nil
+}
