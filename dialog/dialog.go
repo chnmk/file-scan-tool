@@ -4,7 +4,7 @@ import (
 	"github.com/ncruces/zenity"
 )
 
-// Placeholder
+// Placeholder file format select dialog
 func FileFormatDialog() ([]string, error) {
 	items, err := zenity.ListMultipleItems(
 		"Select file formats:",
@@ -18,6 +18,7 @@ func FileFormatDialog() ([]string, error) {
 	return items, nil
 }
 
+// Output mode select dialog
 func OutputModeDialog() (string, error) {
 	mode, err := zenity.List(
 		"Select output mode:",

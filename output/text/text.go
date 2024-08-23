@@ -34,6 +34,7 @@ func (p Text) HandleOutput(result [][2]string) {
 	writeFile(lines)
 }
 
+// Writes scanned file names to a text file
 func writeFile(lines []string) {
 	file, err := os.Create(config.DefaultOutputFile)
 	if err != nil {

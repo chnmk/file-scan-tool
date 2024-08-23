@@ -9,6 +9,7 @@ import (
 	"github.com/chnmk/file-scan-tool/config"
 )
 
+// Scans user input for comma-separated file format values
 func InputFileFormat(stdin io.Reader) ([]string, error) {
 	fmt.Println("Enter file formats separated by commas")
 	fmt.Println("Or use '*' to scan all files")
@@ -27,6 +28,7 @@ func InputFileFormat(stdin io.Reader) ([]string, error) {
 	return result, nil
 }
 
+// Converts user input to a slice
 func trimFileFormat(fileFormat string) []string {
 	// Trim spaces and check if input is empty
 	fileFormat = strings.TrimSpace(fileFormat)
@@ -57,6 +59,7 @@ func trimFileFormat(fileFormat string) []string {
 	return formatSliceNoEmpty
 }
 
+// Scans user input for output mode value
 func InputOutputMode(stdin io.Reader) (string, error) {
 	fmt.Printf("Enter output format (default: %s)\n", config.DefaultOutputMode)
 	fmt.Println("print: prints output in the console")

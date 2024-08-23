@@ -11,6 +11,7 @@ type OutputHandler interface {
 	HandleOutput([][2]string)
 }
 
+// Selects output handling mode based on user input
 func SelectHandler(outputMode string, params []string) OutputHandler {
 	if outputMode == "print" {
 		var handler p.Print
