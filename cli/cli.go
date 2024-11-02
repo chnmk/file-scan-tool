@@ -4,10 +4,27 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"os"
 	"strings"
 
 	"github.com/chnmk/file-scan-tool/config"
 )
+
+func CliInit() ([]string, string) {
+	fileFormats, err := InputFileFormat(os.Stdin)
+	if err != nil {
+		fmt.Println(err)
+		return []string{"error"}, "error"
+	}
+
+	outputMode, err := InputOutputMode(os.Stdin)
+	if err != nil {
+		fmt.Println(err)
+		return []string{"error"}, "error"
+	}
+
+	return fileFormats, outputMode
+}
 
 // Scans user input for comma-separated file format values
 func InputFileFormat(stdin io.Reader) ([]string, error) {

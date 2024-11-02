@@ -2,7 +2,6 @@ package main
 
 import (
 	"fmt"
-	"os"
 
 	"github.com/chnmk/file-scan-tool/cli"
 	"github.com/chnmk/file-scan-tool/dialog"
@@ -14,37 +13,15 @@ import (
 func main() {
 	var fileFormats []string
 	var outputMode string
-	var err error
 
-	cancelErr := zenity.Question("Switch to command line input?",
+	cancelSwitchToCLI := zenity.Question("Switch to command line input?",
 		zenity.Title("Question"),
 		zenity.QuestionIcon)
 
-	if cancelErr == nil {
-		fileFormats, err = cli.InputFileFormat(os.Stdin)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-
-		outputMode, err = cli.InputOutputMode(os.Stdin)
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-
+	if cancelSwitchToCLI == nil {
+		fileFormats, outputMode = cli.CliInit()
 	} else {
-		fileFormats, err = dialog.FileFormatDialog()
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
-
-		outputMode, err = dialog.OutputModeDialog()
-		if err != nil {
-			fmt.Println(err)
-			return
-		}
+		fileFormats, outputMode = dialog.DialogInit()
 	}
 
 	params := []string{"printParent"} // temp
