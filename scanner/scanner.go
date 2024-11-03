@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// Walk the current directory searching for files of selected formats
 func ScanFiles(fileFormats []string) [][2]string {
 	var fileList [][2]string
 
@@ -15,6 +16,7 @@ func ScanFiles(fileFormats []string) [][2]string {
 			return err
 		}
 
+		// Check if the format of the current file is in the list
 		containsFormat := false
 		for _, s := range fileFormats {
 			if filepath.Ext(d.Name()) == "."+s {
@@ -22,6 +24,7 @@ func ScanFiles(fileFormats []string) [][2]string {
 			}
 		}
 
+		// If the format is in the list, add it to the result array
 		if containsFormat {
 			var parent string
 			pathSlice := strings.Split(path, "\\")

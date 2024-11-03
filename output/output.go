@@ -25,6 +25,26 @@ func SelectHandler(outputMode string, params []string) OutputHandler {
 		return handler
 	}
 
+	/*
+		if outputMode == "json" {
+			// ...
+			handler.HandleParams(params)
+			return handler
+		}
+
+		if outputMode == "yaml" {
+			// ...
+			handler.HandleParams(params)
+			return handler
+		}
+
+		if outputMode == "sql" {
+			// ...
+			handler.HandleParams(params)
+			return handler
+		}
+	*/
+
 	fmt.Println("Invalid output mode")
 	return nil
 }
