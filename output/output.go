@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	p "github.com/chnmk/file-scan-tool/output/print"
+	sql_api "github.com/chnmk/file-scan-tool/output/sql"
 	"github.com/chnmk/file-scan-tool/output/text"
 )
 
@@ -21,6 +22,12 @@ func SelectHandler(outputMode string, params []string) OutputHandler {
 
 	if outputMode == "text" {
 		var handler text.Text
+		handler.HandleParams(params)
+		return handler
+	}
+
+	if outputMode == "sql" {
+		var handler sql_api.SQLFile
 		handler.HandleParams(params)
 		return handler
 	}

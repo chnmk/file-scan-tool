@@ -40,7 +40,7 @@ func FileFormatDialog() ([]string, error) {
 func OutputModeDialog() (string, error) {
 	mode, err := zenity.List(
 		"Select output mode:",
-		[]string{"print", "text"},
+		[]string{"print", "text", "sql"},
 		zenity.Title("Select items from the list"),
 		zenity.DisallowEmpty(),
 	)

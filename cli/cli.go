@@ -81,6 +81,7 @@ func InputOutputMode(stdin io.Reader) (string, error) {
 	fmt.Printf("Enter output format (default: %s)\n", config.DefaultOutputMode)
 	fmt.Println("print: prints output in the console")
 	fmt.Printf("text: saves output in a text file (%s)\n", config.DefaultOutputFile)
+	fmt.Println("sql: stores data in a SQLite file")
 	reader := bufio.NewReader(stdin)
 
 	// Read data
@@ -92,7 +93,7 @@ func InputOutputMode(stdin io.Reader) (string, error) {
 
 	outputFormat = strings.TrimSpace(outputFormat)
 
-	if outputFormat != "print" && outputFormat != "text" {
+	if outputFormat != "print" && outputFormat != "text" && outputFormat != "sql" {
 		fmt.Println("Input is invalid, using default instead...")
 		outputFormat = config.DefaultOutputMode
 	}
