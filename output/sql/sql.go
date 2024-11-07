@@ -4,20 +4,19 @@ import (
 	"database/sql"
 	"fmt"
 
+	"github.com/chnmk/file-scan-tool/output/structs"
 	_ "modernc.org/sqlite"
 )
 
 type SQLFile struct {
-	printParent bool
+	structs.Output
 }
 
+/*
 func (p *SQLFile) HandleParams(params []string) {
-	if params[0] == "printParent" {
-		p.printParent = true
-	} else {
-		p.printParent = false
-	}
+
 }
+*/
 
 func (p SQLFile) HandleOutput(result [][2]string) {
 	db, err := sql.Open("sqlite", "output.db")
@@ -28,7 +27,7 @@ func (p SQLFile) HandleOutput(result [][2]string) {
 
 	createTableQuery := "CREATE TABLE output (id INTEGER PRIMARY KEY, file VARCHAR(512));"
 	insertQuery := "INSERT INTO output (file) VALUES (:file)"
-	if p.printParent {
+	if p.PrintParent {
 		createTableQuery = "CREATE TABLE output (id INTEGER PRIMARY KEY, file VARCHAR(512), parent VARCHAR(512));"
 		insertQuery = "INSERT INTO output (file, parent) VALUES (:file, :parent)"
 	}

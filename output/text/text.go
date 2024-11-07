@@ -6,25 +6,24 @@ import (
 	"os"
 
 	"github.com/chnmk/file-scan-tool/config"
+	"github.com/chnmk/file-scan-tool/output/structs"
 )
 
 type Text struct {
-	printParent bool
+	structs.Output
 }
 
+/*
 func (p *Text) HandleParams(params []string) {
-	if params[0] == "printParent" {
-		p.printParent = true
-	} else {
-		p.printParent = false
-	}
+
 }
+*/
 
 func (p Text) HandleOutput(result [][2]string) {
 	var lines []string
 
 	for _, r := range result {
-		if p.printParent {
+		if p.PrintParent {
 			lines = append(lines, fmt.Sprintf("File: %s, Parent: %s\n", r[0], r[1]))
 		} else {
 			lines = append(lines, r[0])
