@@ -1,10 +1,9 @@
-# File Scan Tool
+# Go File List
 
-A command-line tool to scan current folder for files of selected format using path/filepath package. Currently supports any combination of any number of file formats with export to the console or to a txt file.
+A tool to scan the current folder for files of a selected format using path/filepath package. 
 
 ## Features
 
-- Command-line input
-- GUI template using [Zenity](https://github.com/ncruces/zenity)
-- Support for multiple file formats
-- Easy to add more output modes or flags
+- Command-line input with a GUI template using [Zenity](https://github.com/ncruces/zenity)
+- Supports any combination of any number of file formats
+- Output to console, txt, json, yaml files or a SQLite3 database
