@@ -16,10 +16,14 @@ func ScanFiles(fileFormats []string) [][2]string {
 		}
 
 		// Check if the format of the current file is in the list
-		containsFormat := false
-		for _, s := range fileFormats {
-			if filepath.Ext(d.Name()) == "."+s {
-				containsFormat = true
+		containsFormat := true
+		if fileFormats[0] != "*" {
+			containsFormat = false
+
+			for _, s := range fileFormats {
+				if filepath.Ext(d.Name()) == "."+s {
+					containsFormat = true
+				}
 			}
 		}
 
