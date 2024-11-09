@@ -31,7 +31,7 @@ func main() {
 	outputHandler := output.SelectHandler(outputMode, params)
 
 	// Start file scan
-	fmt.Println("Scanning for files:", fileFormats)
+	fmt.Println("\nScanning for files:", fileFormats)
 	result := scanner.ScanFiles(fileFormats)
 
 	// Start result output

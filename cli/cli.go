@@ -78,7 +78,7 @@ func trimFileFormat(fileFormat string) []string {
 
 // Scans user input for output mode value
 func InputOutputMode(stdin io.Reader) (string, error) {
-	fmt.Printf("Enter output format (default: %s)\n", config.DefaultOutputMode)
+	fmt.Printf("\nEnter output format (default: %s)\n", config.DefaultOutputMode)
 	fmt.Println("print: prints output in the console")
 	fmt.Printf("text: saves output in a text file (%s)\n", config.DefaultOutputFile)
 	fmt.Println("sql: stores data in a SQLite file")
