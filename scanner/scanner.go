@@ -4,7 +4,6 @@ import (
 	"io/fs"
 	"log"
 	"path/filepath"
-	"strings"
 )
 
 // Walk the current directory searching for files of selected formats
@@ -26,15 +25,8 @@ func ScanFiles(fileFormats []string) [][2]string {
 
 		// If the format is in the list, add it to the result array
 		if containsFormat {
-			var parent string
-			pathSlice := strings.Split(path, "\\")
-			if len(pathSlice) > 1 {
-				parent = pathSlice[len(pathSlice)-2] // -1 to adjust for slice index, -1 for second to last element
-			}
-
 			var fileWithParent [2]string
-			fileWithParent[0] = d.Name()
-			fileWithParent[1] = parent
+			fileWithParent[1], fileWithParent[0] = filepath.Split(path)
 			fileList = append(fileList, fileWithParent)
 		}
 

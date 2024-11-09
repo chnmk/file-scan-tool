@@ -28,6 +28,7 @@ func main() {
 
 	// Select output params
 	params := []string{"printParent"} // temp
+	// params := []string{"printParent", "printIDs", "convertToTree"}
 	outputHandler := output.SelectHandler(outputMode, params)
 
 	// Start file scan
