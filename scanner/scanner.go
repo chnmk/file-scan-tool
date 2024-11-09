@@ -42,7 +42,8 @@ func ScanFiles(fileFormats []string) [][2]string {
 	})
 
 	if err != nil {
-		log.Println(err)
+		log.Fatal(err)
+		// return
 	}
 
 	return fileList

@@ -1,7 +1,7 @@
 package dialog
 
 import (
-	"fmt"
+	"os"
 
 	"github.com/ncruces/zenity"
 )
@@ -9,14 +9,14 @@ import (
 func DialogInit() ([]string, string) {
 	fileFormats, err := FileFormatDialog()
 	if err != nil {
-		fmt.Println(err)
-		return []string{"error"}, "error"
+		os.Exit(0)
+		// return []string{"error"}, "error"
 	}
 
 	outputMode, err := OutputModeDialog()
 	if err != nil {
-		fmt.Println(err)
-		return []string{"error"}, "error"
+		os.Exit(0)
+		// return []string{"error"}, "error"
 	}
 
 	return fileFormats, outputMode

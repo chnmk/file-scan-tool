@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"io"
+	"log"
 	"os"
 	"strings"
 
@@ -13,14 +14,14 @@ import (
 func CliInit() ([]string, string) {
 	fileFormats, err := InputFileFormat(os.Stdin)
 	if err != nil {
-		fmt.Println(err)
-		return []string{"error"}, "error"
+		log.Fatal(err)
+		// return []string{"error"}, "error"
 	}
 
 	outputMode, err := InputOutputMode(os.Stdin)
 	if err != nil {
-		fmt.Println(err)
-		return []string{"error"}, "error"
+		log.Fatal(err)
+		// return []string{"error"}, "error"
 	}
 
 	return fileFormats, outputMode
@@ -36,8 +37,8 @@ func InputFileFormat(stdin io.Reader) ([]string, error) {
 	// Read data
 	fileFormat, err := reader.ReadString('\n')
 	if err != nil {
-		fmt.Println(err)
-		return []string{}, err
+		log.Fatal(err)
+		// return []string{}, err
 	}
 
 	result := trimFileFormat(fileFormat)
@@ -87,8 +88,8 @@ func InputOutputMode(stdin io.Reader) (string, error) {
 	// Read data
 	outputFormat, err := reader.ReadString('\n')
 	if err != nil {
-		fmt.Println(err)
-		return "", err
+		log.Fatal(err)
+		// return "", err
 	}
 
 	outputFormat = strings.TrimSpace(outputFormat)

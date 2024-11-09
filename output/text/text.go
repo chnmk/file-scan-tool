@@ -38,6 +38,7 @@ func writeFile(lines []string) {
 	file, err := os.Create(config.DefaultOutputFile)
 	if err != nil {
 		log.Fatal(err)
+		// return
 	}
 
 	defer file.Close()
@@ -46,6 +47,7 @@ func writeFile(lines []string) {
 		_, err := file.WriteString(line + "\n")
 		if err != nil {
 			log.Fatal(err)
+			// return
 		}
 	}
 }
